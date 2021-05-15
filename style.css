@@ -1,0 +1,48 @@
+body{
+    background-color: aqua;
+
+}
+#img-div{
+        display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+img{
+    margin: 10px;
+}
+div{
+    display: flex;
+}
+#score-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 28rem;
+    margin-top: 10rem;
+    border: 5px solid black;
+    width: 600px;
+    height: 200px;
+    background-color: white;
+}
+#score{
+    font-size: 30px;
+}
+button{
+    background-color: blue;
+    color: burlywood;
+    width: 150px;
+    height: 50px;
+    display: none;
+}
+#button-div{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+#info{
+    color: black;
+    display: flex;
+    text-align: center;
+    max-width: 200px;
+}
