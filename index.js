@@ -32,11 +32,11 @@ const computerChoice = () =>{
 rockbtn.onclick = () => {
     playerSelection="rock"
     computerChoice()
-    if(score1 > 4){
+    if(score1 >= 5){
         playagain.setAttribute('style', "display: block")
         para.textContent = `congratulation you won with the score of ${score1} - ${score2}`
         compChoice.textContent = ''
-    }else if(score2 >4 ){
+    }else if(score2 >=5 ){
         playagain.setAttribute('style', "display: block")
         para.textContent = `you lost with the score of ${score1} - ${score2}`
         compChoice.textContent = ''
@@ -49,41 +49,37 @@ recognition.addEventListener('result', (e) => {
           .map(result => result[0])
           .map(result => result.transcript)
           .join('')
-          console.log(transscipt)
-     
-          if(score1>= 5){
-            playagain.setAttribute('style', "display: block")
-            para.textContent = `congratulation you won with the score of ${score1} - ${score2}`
-            compChoice.textContent = ''
-        }else if(score2 >=5 ){
-            playagain.setAttribute('style', "display: block")
-            para.textContent = `you lost with the score of ${score1} - ${score2}`
-            compChoice.textContent = ''
-        }else{
-                if(transscipt.includes('rock')){
-                    computerChoice()
-                    state = true
-                    playerSelection="rock"
-                }else if(transscipt.includes('rock')){
-                    computerChoice()
-                    state = true
-                    playerSelection="rock"
-                }else if(transscipt.includes("paper")){
-                    computerChoice()
-                    state = true
-                    playerSelection="paper"
-                }else if(transscipt.includes("scissors")){
-                    computerChoice()
-                    state = true
-                    playerSelection="scissors"
-                }else{
-                    return 
-                }
-                if(state){
-                    playRound(computerChoice(), playerSelection)
-                }
-        }
-         
+          let correction = transscipt.toLocaleLowerCase();
+         console.log(correction)
+          if(e.results[0].isFinal){
+            if(score1== 5){
+                playagain.setAttribute('style', "display: block")
+                para.textContent = `congratulation you won with the score of ${score1} - ${score2}`
+                compChoice.textContent = ''
+            }else if(score2 ==5  ){
+                playagain.setAttribute('style', "display: block")
+                para.textContent = `you lost with the score of ${score1} - ${score2}`
+                compChoice.textContent = ''
+            }else if(correction.includes('rock')){
+                        computerChoice()
+                        state = true
+                        playerSelection="rock"
+                    }else if(correction.includes("paper")){
+                        computerChoice()
+                        state = true
+                        playerSelection="paper"
+                    }else if(correction.includes("scissors")){
+                        computerChoice()
+                        state = true
+                        playerSelection="scissors"
+                    }else{
+                        return 
+                    }
+                    if(state){
+                        playRound(computerChoice(), playerSelection)
+                    }
+          }
+          
        
   })
   recognition.start()
@@ -91,11 +87,11 @@ recognition.addEventListener('end', recognition.start)
 scissorbtn.onclick = () =>{
     playerSelection="scissors"
     computerChoice()
-    if(score1 > 4){
+    if(score1 >= 4){
         playagain.setAttribute('style', "display: block")
         para.textContent = `congratulation you won with the score of ${score1} - ${score2}`
         compChoice.textContent = ''
-    }else if(score2 >4 ){
+    }else if(score2 >=4 ){
         playagain.setAttribute('style', "display: block")
         para.textContent = `you lost with the score of ${score1} - ${score2}`
         compChoice.textContent = ''
@@ -106,11 +102,11 @@ scissorbtn.onclick = () =>{
 paperbtn.onclick = () =>{
     playerSelection="paper"
     computerChoice()
-    if(score1 > 4){
+    if(score1 >= 5){
         playagain.setAttribute('style', "display: block")
         para.textContent = `congratulation you won with the score of ${score1} - ${score2}`
         compChoice.textContent = ''
-    }else if(score2 >4 ){
+    }else if(score2 >=5 ){
         playagain.setAttribute('style', "display: block")
         para.textContent = `you lost with the score of ${score1} - ${score2}`
         compChoice.textContent = ''
@@ -127,7 +123,6 @@ const playRound  = (computerChoice,playerSelection) => {
         compChoice.textContent = `computers choice was ${computerChoice}`   
     }else if(playerSelection == "scissors" && computerChoice === "paper"){
         compChoice.textContent = `computers choice was ${computerChoice}`
-     
         para.textContent = `score: ${++score1} - ${score2}`
     }else if(playerSelection == "paper" && computerChoice === "rock"){
         compChoice.textContent = `computers choice was ${computerChoice}`
